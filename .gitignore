@@ -2,5 +2,6 @@
 .DS_Store
 /part1/bin
 /part2/bin
+/part3/bin
 
 cmake-build-debug
