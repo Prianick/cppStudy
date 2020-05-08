@@ -1,5 +1,13 @@
 #include <iostream>
 
+/**
+ * Принимает на вход строку(указатель), изменяет её длину до заданной длины. Удаляет исходную строку, сохраняя в память новую.
+ *
+ * @param str
+ * @param size
+ * @param new_size
+ * @return
+ */
 char *resize(const char *str, unsigned size, unsigned new_size)
 {
     char * new_str = new char[new_size];
