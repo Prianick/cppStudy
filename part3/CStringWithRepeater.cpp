@@ -5,7 +5,7 @@
 struct String {
 
     String(size_t n, char c) {
-        this->size = n + 1;
+        this->size = n;
         this->str = new char[n + 1];
         int i = 0;
         while (i < n) {
