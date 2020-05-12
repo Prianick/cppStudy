@@ -4,6 +4,13 @@
 
 struct String {
 
+    String(const char *str = "") {
+        this->size = strlen(str);
+        this->str = new char [this->size + 1];
+        strcpy(this->str, str);
+        this->str[this->size] = '\0';
+    }
+
     String(size_t n, char c) {
         this->size = n;
         this->str = new char[n + 1];
@@ -16,12 +23,25 @@ struct String {
     }
 
     ~String() {
+        this->moveIndexToStartOfString();
         delete[] this->str;
     }
 
     size_t size;
     char *str;
+
+    // после того как мы собрали все элементы из массива возвращаем указатель но начало массива
+    // вот так можно определить начало массива
+    void moveIndexToStartOfString() {
+        int i = 1;
+        while (this->str[-i] != '\0') {
+            i++;
+        }
+        this->str = this->str - i + 1;
+    }
 };
+
+
 
 int main() {
 
@@ -41,14 +61,12 @@ int main() {
         a.str++;
         i++;
     }
-    // после того как мы собрали все элементы из массива возвращаем указатель но начало массива
-    // вот так можно определить начало массива
-    i = 1;
-    while (a.str[-i] != '\0') {
-        i++;
-    }
-    a.str = a.str - i + 1;
-    std::cout << a.size;
 
-    std::cout << res;
+    std::cout << a.size << std::endl;
+
+    std::cout << res << std::endl;
+
+    String b = "sadds";
+
+    std::cout << b.str;
 }
