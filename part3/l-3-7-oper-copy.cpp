@@ -35,6 +35,21 @@ struct String {
         }
     }
 
+    String &operator=(const String &other) {
+        if (this != &other) {
+            delete [] str;
+            size = other.size;
+            str = new char[size + 1];
+            unsigned i = 0;
+            while (i < size + 1) {
+                str[i] = other.str[i];
+                i++;
+            }
+        }
+
+        return *this;
+    }
+
     void append(String &other) {
         size_t newSize = size + other.size;
         char *temp = new char[newSize + 1];
