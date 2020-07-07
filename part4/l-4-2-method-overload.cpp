@@ -1,6 +1,4 @@
 #include <iostream>
-#include <cstddef> // size_t
-#include <cstring> // strlen, strcpy
 
 struct String {
     // конструктор
@@ -40,7 +38,7 @@ struct String {
     // конструктор присваивания
     String &operator=(const String &other) {
         if (this != &other) {
-            delete [] str;
+            delete[] str;
             size = other.size;
             str = new char[size + 1];
             unsigned i = 0;
@@ -76,17 +74,33 @@ struct String {
         str = temp;
     }
 
+    char &at(size_t idx) {
+        return str[idx];
+    }
+
+    char at(size_t idx) const {
+        return str[idx];
+    }
+
     size_t size;
     char *str;
 };
 
+void promotion(char &) { std::cout << "char" << std::endl; }
+void promotion(int  &) { std::cout << "int"  << std::endl; }
+void promotion(long &) { std::cout << "long" << std::endl; }
+
 int main() {
-    std::cout << "hello" << std::endl;
-    String str1 = "21414sdfad" ;
-    String str2 = str1;
-    std::cout << str1.str << std::endl << "sad" << std::endl;
-    String str3 = "2323";
-    str1.append(str3);
-    std::cout << str2.str << std::endl;
-    std::cout << str1.str << std::endl;
+    String greet("Hello");
+    char ch1 = greet.at(0);
+    printf("\n %c", ch1);
+
+    String const const_greet("Hello, Const!");
+    char const &ch2 = const_greet.at(0);
+
+    printf("\n %c", ch2);
+
+    short sh = 10;
+    promotion(sh);
+
 }
