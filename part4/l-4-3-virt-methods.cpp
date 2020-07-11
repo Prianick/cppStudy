@@ -115,6 +115,33 @@ private:
     char op;
 };
 
+int demo() {
+    int a = 7;
+    std::cout << a << '\n'; // выводим значение переменной a
+    std::cout << &a << '\n'; // выводим адрес памяти переменной a
+    std::cout << *&a << '\n'; // выводим значение ячейки памяти переменной a
+
+    int value = 1;
+    int *ptr = &value; // инициализируем ptr адресом значения переменной
+
+    std::cout << "(int *)&value: " << (int *)&value << '\n'; // выводим адрес значения переменной value
+    std::cout << "ptr: " << ptr << '\n'; // выводим адрес, который хранит ptr
+
+    int x(4);
+    std::cout << "&x: " << typeid(&x).name() << "\n";
+    std::cout << "*&x: " << *&x << "\n";
+    std::cout << "&x: " << &x << "\n";
+
+    return 0;
+}
+
+bool check_equals(Expression const *left, Expression const *right) {
+    int * p1 = (int *)left;
+    int * p2 = (int *)right;
+    return *p1 == *p2;
+}
+
+
 int main() {
 //    char str[] = "some name";
 //    char *strP = str;
@@ -124,18 +151,28 @@ int main() {
 //    Person prP("some 2 name");
 //    std::cout << "Person name: " << prP.occupation() << std::endl;
 
-    // сначала создаём объекты для подвыражения 4.5 * 5
-    Expression *sube = new BinaryOperation(new Number(4.5), '*', new Number(5));
-    // потом используем его в выражении для +
-    Expression *expr = new BinaryOperation(new Number(3), '+', sube);
+//    // сначала создаём объекты для подвыражения 4.5 * 5
+//    Expression *sube = new BinaryOperation(new Number(4.5), '*', new Number(5));
+//    // потом используем его в выражении для +
+//    Expression *expr = new BinaryOperation(new Number(3), '+', sube);
+//
+//    // вычисляем и выводим результат: 25.5
+//    std::cout << expr->evaluate() << std::endl;
+//
+//    // тут освобождаются *все* выделенные объекты
+//    // (например, sube будет правым операндом expr, поэтому его удалять не нужно)
+//    delete expr;
 
-    // вычисляем и выводим результат: 25.5
-    std::cout << expr->evaluate() << std::endl;
+    Expression *num1 = new Number(3);
+    Expression *sube1 = new BinaryOperation(new Number(4.5), '*', new Number(5));
+    Expression *num2 = new Number(255);
 
-    // тут освобождаются *все* выделенные объекты
-    // (например, sube будет правым операндом expr, поэтому его удалять не нужно)
-    delete expr;
+//    demo();
 
+    bool res1 = check_equals(num1, num2);
+    std::cout << "res1: " << res1 << std::endl;
+    bool res2 = check_equals(num1, sube1);
+    std::cout << "res2: " << res2 << std::endl;
 
     return 1;
 }
