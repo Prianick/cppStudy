@@ -143,13 +143,13 @@ bool check_equals(Expression const *left, Expression const *right) {
 
 
 int main() {
-//    char str[] = "some name";
-//    char *strP = str;
-//    Professor pr(strP);
-//    std::cout << "Prof name: " << pr.occupation() << std::endl;
-//    pr.test();
-//    Person prP("some 2 name");
-//    std::cout << "Person name: " << prP.occupation() << std::endl;
+    char str[] = "some name";
+    char *strP = str;
+    Professor pr(strP);
+    std::cout << "Prof name: " << pr.occupation() << std::endl;
+    pr.test();
+    Person prP("some 2 name");
+    std::cout << "Person name: " << prP.occupation() << std::endl;
 
 //    // сначала создаём объекты для подвыражения 4.5 * 5
 //    Expression *sube = new BinaryOperation(new Number(4.5), '*', new Number(5));
